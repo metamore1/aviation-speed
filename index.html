@@ -224,7 +224,14 @@
             border-color: #2c3e50 transparent transparent transparent;
         }
 
-        .tooltip:hover .tooltip-text {
+        @media (hover: hover) {
+            .tooltip:hover .tooltip-text {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        .tooltip-text.show {
             visibility: visible;
             opacity: 1;
         }
@@ -640,6 +647,22 @@
             const container = document.getElementById('messages');
             container.innerHTML = `<div class="warning-message">${message}</div>`;
         }
+
+        document.querySelectorAll('.tooltip').forEach((tip) => {
+            tip.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const text = tip.querySelector('.tooltip-text');
+                if (!text) return;
+                document.querySelectorAll('.tooltip-text.show').forEach((other) => {
+                    if (other !== text) other.classList.remove('show');
+                });
+                text.classList.toggle('show');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.tooltip-text.show').forEach((t) => t.classList.remove('show'));
+        });
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
