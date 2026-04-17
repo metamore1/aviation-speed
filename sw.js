@@ -1,10 +1,14 @@
-const CACHE_NAME = 'aviation-calc-v1.0.2';
+const CACHE_NAME = 'aviation-calc-v1.0.3';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon.svg',
-  './icon-maskable.svg'
+  './icon-maskable.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png',
+  './apple-touch-icon.png'
 ];
 
 self.addEventListener('install', (event) => {
